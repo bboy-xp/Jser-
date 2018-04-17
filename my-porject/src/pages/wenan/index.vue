@@ -72,7 +72,7 @@ export default {};
 }
 .title {
   font-size: 47rpx;
-  font-weight: 500;
+  font-weight: bold;
 }
 .text {
   margin-top: 20rpx;

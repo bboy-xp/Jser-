@@ -47,7 +47,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 124rpx;
+  padding-top: 100rpx;
   
 }
 .optionText{
@@ -55,10 +55,13 @@ export default {
   align-items: center;
   font-size: 40rpx;
   padding-left: 120rpx;
-  /* background: -webkit-gradient(linear, 0% 80%, 40% 0%,from(rgb(252,154,174)), to(rgb(255,0,51))); */
   height: 150rpx;
   width: 522rpx;
   font-weight: bold;
+}
+.selectedOption{
+  background: -webkit-gradient(linear, 0% 80%, 40% 0%,from(rgb(252,154,174)), to(rgb(255,0,51)));
+  color: white;
 }
 .hot{
     font-size: 20rpx;

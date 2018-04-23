@@ -81,6 +81,7 @@ export default {};
   line-height: 48rpx;
   color: rgb(51, 51, 51);
   font-weight: thin;
+  text-align: justify;
 }
 .link {
   display: inline;

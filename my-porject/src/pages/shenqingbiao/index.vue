@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-      <img v-on:enter-cancelled="enterCancelled" src="../../../static/pic/bg1.png" alt="" :class="bg">
+      <img src="../../../static/pic/bg1.png" class="bg">
       <!-- <div class="header"></div> -->
       <div class="contain">
           <div class="text1">现在申请</div>
@@ -18,22 +18,11 @@
 export default {
   data() {
     return {
-      change: true,
-      bg: 'bg1'
+      
     };
   },
   mounted() {},
-  methods: {
-      enterCancelled(change) {
-          console.log('走到这里了');
-          this.change = !this.change;
-          if (change) {
-              this.bg = 'bg2';
-          }else{
-              this.bg = 'bg1';
-          }
-      }
-  }
+  methods: {}
 };
 </script>
 <style scoped>
@@ -80,7 +69,7 @@ export default {
   width: 126rpx;
   border-radius: 126rpx;
   border: 6rpx solid white;
-  box-shadow: 0 20rpx 40rpx 0 rgba(0, 0, 0, 0.86);
+  box-shadow: 0 20rpx 40rpx 0 rgba(0, 0, 0, 0.56);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,9 +82,12 @@ export default {
 .text4 {
   margin-top: 179rpx;
   color: white;
-  font-size: 35rpx;
+  font-size: 30rpx;
+  letter-spacing: 6rpx;
+  line-height: 50rpx;
 }
-@keyframes move1 {
+
+@keyframes movement {
   0% {
     margin-left: 0;
   }
@@ -103,29 +95,15 @@ export default {
     margin-left: -150vw;
   }
 }
-@keyframes move2 {
-  0% {
-    margin-left: -150vw;
-  }
-  100% {
-    margin-left: 0;
-  }
-}
-.bg1 {
+
+.bg {
+  filter: brightness(0.7);
   position: absolute;
   z-index: -1;
   height: 100vh;
   width: 250vw;
   /* left: -100vw; */
-  animation: move1 30s  infinite;
-}
-.bg2 {
-  position: absolute;
-  z-index: -1;
-  height: 100vh;
-  width: 250vw;
-  /* left: -100vw; */
-  animation: move2 30s  infinite;
+  animation: movement 25s linear alternate infinite;
 }
 </style>
 

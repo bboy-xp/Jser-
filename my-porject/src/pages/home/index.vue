@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-      <img src="../../../static/pic/bg2.gif" class="bg">
+      <img src="" class="bg">
       <!-- <div class="header"></div> -->
       <div class="contain">
           <div class="text1">三个月的蜕变<br>成为一名开发者</div>

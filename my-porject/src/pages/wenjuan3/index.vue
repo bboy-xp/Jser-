@@ -46,7 +46,7 @@
                 准备好认识你的新同学了吗，长摁二维码加入Jser预报名群，与准新学员一同交流。
             </div>
             <div class="imgs">
-                <img class="QRcode" src="../../../static/pic/0.gif" alt="">
+                <img class="QRcode" src="" alt="">
                 <img class="jserPic" src="../../../static/pic/2.png" alt="">
             </div>
         </div>
@@ -138,7 +138,7 @@ export default {
   margin-bottom: 70rpx;
   /* -webkit-linear-gradient: (top,rgb(255,50,98),rgb(50,255,228)); */
   /* -webkit-gradient:(linear, 0% 0%, 0% 100%, from(#ff6600), to(#339900));  */
-  background: -webkit-gradient(linear, 0% 80%, 40% 0%,from(rgb(252,154,174)), to(rgb(255,0,51)));
+  background: radial-gradient(at 5% 110%,rgb(252,154,174), rgb(255,0,51) 80%); 
   color: white;
   display: flex;
   justify-content: center;
@@ -202,7 +202,7 @@ export default {
     display: flex;
     align-items: center;
     box-shadow: 0 20rpx 30rpx 0 rgba(254, 36, 80, 0.2);
-    background: -webkit-gradient(linear, 0% 80%, 40% 0%,from(rgb(252,154,174)), to(rgb(255,0,51))); 
+    background: radial-gradient(at 5% 110%,rgb(252,154,174), rgb(255,0,51) 80%); 
 }
 .date{
     display: flex;

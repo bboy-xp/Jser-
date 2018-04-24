@@ -60,7 +60,7 @@ export default {
   font-weight: bold;
 }
 .selectedOption{
-  background: -webkit-gradient(linear, 0% 80%, 40% 0%,from(rgb(252,154,174)), to(rgb(255,0,51)));
+  background: radial-gradient(at 5% 110%,rgb(252,154,174), rgb(255,0,51) 80%); 
   color: white;
 }
 .hot{

@@ -1,6 +1,24 @@
 <template>
   <div class="page">
-      <div class="header"></div>
+      <div class="header">
+        <div class="box" @click="change(close)">
+          <div :class="line1"></div>
+          <div :class="line2"></div>
+          <div :class="line3"></div>
+        </div>
+      </div>
+      <div class="menu">
+        <div class="bgBlur"></div>
+          <div class="options">
+              <div class="optionText">首页</div>
+              <div class="optionText">课程简介</div>
+              <div class="optionText">学习里程</div>
+              <div class="optionText">学员故事</div>
+              <div class="optionText">关于我们</div>
+              <div class="optionText">现在报名</div>
+          </div>
+          <div class="hot">HOT</div>
+      </div>
       <div class="contain">
           <div class="title">
               学习最实用的互联网工具
@@ -48,7 +66,30 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      line1: "line",
+      line2: "line",
+      line3: "line",
+      close: true
+    };
+  },
+  methods: {
+    change(close) {
+      this.close = !this.close;
+      if (close) {
+        this.line1 = "line one";
+        this.line2 = "line two";
+        this.line3 = "line three";
+      } else {
+        this.line1 = "line2 one2";
+        this.line2 = "line2 two2";
+        this.line3 = "line2 three2";
+      }
+    }
+  }
+};
 </script>
 <style scoped>
 .page {
@@ -56,19 +97,24 @@ export default {};
   flex-direction: column;
 }
 .header {
+  z-index: 11;
   height: 142rpx;
   width: 100vw;
-  background-color: red;
+  /* background-color: red; */
   box-shadow: 0 2rpx 150rpx 0 rgba(207, 207, 207, 0.7);
+  position: fixed;
+  background-color: #fff;
 }
+
 .contain {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  padding-top: 51rpx;
+  padding-top: 193rpx;
   margin: 0 105rpx;
+  -webkit-filter: blur(10px);
 }
 .title {
   font-size: 47rpx;
@@ -94,16 +140,16 @@ export default {};
   margin: auto;
   margin-bottom: 80rpx;
 }
-.specialPic{
+.specialPic {
   margin-bottom: 270rpx;
 }
-.joinBtn{
+.joinBtn {
   height: 100rpx;
   width: 72vw;
   margin: auto;
   /* -webkit-linear-gradient: (top,rgb(255,50,98),rgb(50,255,228)); */
   /* -webkit-gradient:(linear, 0% 0%, 0% 100%, from(#ff6600), to(#339900));  */
-  background: -webkit-gradient(linear, 0% 80%, 40% 0%,from(rgb(252,154,174)), to(rgb(255,0,51)));
+  background: radial-gradient(at 5% 110%,rgb(252,154,174), rgb(255,0,51) 80%); 
   color: white;
   display: flex;
   justify-content: center;
@@ -112,7 +158,175 @@ export default {};
   font-size: 45rpx;
   position: fixed;
   bottom: 70rpx;
-  box-shadow: 0 25rpx 50rpx 0 rgba(254, 111, 140, 0.5) 
+  box-shadow: 0 25rpx 50rpx 0 rgba(254, 111, 140, 0.5);
+}
+
+@keyframes one {
+  0% {
+    width: 50rpx;
+    background: red;
+  }
+
+  100% {
+    width: 0px;
+    background: red;
+  }
+}
+@keyframes one2 {
+  0% {
+    width: 0px;
+    background: red;
+  }
+
+  100% {
+    width: 50rpx;
+    background: red;
+  }
+}
+
+@keyframes two {
+  0% {
+    width: 50rpx;
+    background: red;
+  }
+
+  100% {
+    width: 50rpx;
+    background: red;
+    -webkit-transform: rotate(135deg);
+  }
+}
+@keyframes two2 {
+  0% {
+    width: 50rpx;
+    background: red;
+    -webkit-transform: rotate(135deg);
+  }
+
+  100% {
+    width: 50rpx;
+    background: red;
+  }
+}
+@keyframes three {
+  0% {
+    width: 50rpx;
+    background: red;
+  }
+
+  100% {
+    width: 50rpx;
+    background: red;
+    transform: rotate(45deg) translate(-13rpx, -13rpx);
+    /* -webkit-transform-origin: center; */
+    /* -webkit-transform: translate(50px,50rpx); */
+  }
+}
+@keyframes three2 {
+  0% {
+    width: 50rpx;
+    background: red;
+    transform: rotate(45deg) translate(-13rpx, -13rpx);
+  }
+
+  100% {
+    width: 50rpx;
+    background: red;
+  }
+}
+
+.line {
+  margin-top: 14rpx;
+  width: 50rpx;
+  height: 10rpx;
+  background: red;
+  color: #fff;
+  border-radius: 8px;
+}
+.line2 {
+  margin-top: 14rpx;
+  width: 50rpx;
+  height: 10rpx;
+  background: white;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.box {
+  
+  display: flex;
+  flex-direction: column;
+  width: 50rpx;
+  margin: 50rpx 0rpx 0rpx 40rpx;
+}
+
+.one {
+  animation: one 500ms ease 0.5ms forwards;
+}
+.one2 {
+  animation: one2 500ms ease 0.5ms forwards;
+}
+
+.two {
+  animation: two 500ms ease 0.5ms forwards;
+}
+.two2 {
+  animation: two2 500ms ease 0.5ms forwards;
+}
+
+.three {
+  animation: three 500ms ease 0.5ms forwards;
+}
+.three2 {
+  animation: three2 500ms ease 0.5ms forwards;
+}
+
+.bgBlur {
+  z-index: ;
+}
+.menu {
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 100rpx;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  /* background-color: rgba(255, 255, 255, 0.3); */
+  
+}
+
+.optionText{
+  display: flex;
+  align-items: center;
+  font-size: 40rpx;
+  padding-left: 120rpx;
+  height: 150rpx;
+  width: 522rpx;
+  font-weight: bold;
+}
+.selectedOption{
+  background: radial-gradient(at 5% 110%,rgb(252,154,174), rgb(255,0,51) 80%); 
+  color: white;
+}
+.hot{
+    font-size: 20rpx;
+    color: white;
+    width: 82rpx;
+    height: 37rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(254, 36, 80);
+    border-radius: 37rpx;
+    position: relative;
+    bottom: 92rpx;
+    left: 300rpx;
+}
+.options {
+  z-index: 20;
 }
 </style>
 

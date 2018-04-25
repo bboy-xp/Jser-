@@ -1,64 +1,75 @@
 <template>
     <div class="page">
-        <div class="header">
+      <div :class="header">
         <div class="box" @click="change(close)">
           <div :class="line1"></div>
           <div :class="line2"></div>
           <div :class="line3"></div>
         </div>
       </div>
-        <div class="contain">
-            <div class="title">
-                你的基本信息
-            </div>
-            <div class="threeLine">
-                <div class="redline lineColor1"></div>
-                <div class="redline lineColor2"></div>
-                <div class="redline lineColor3"></div>
-            </div>
-            <div class="question">
-                姓名 ：
-            </div>
-            <input class="aswerBox" type="text">
-            <div class="question">
-                你是 ：
-            </div>
-            <div class="radioBox">
-                    <radio-group class="radio-group" @change="sexRadioChange">
-                        <label class="radio" v-for="(sex, index) in sexs" :key="index">
-                            <radio :value="sex.name" :checked="sex.checked"/> {{sex.value}}
-                        </label>
-                    </radio-group>  
-            </div>
-            <div class="question">
-                你所在的学校或单位 ：
-            </div>
-            <input class="aswerBox" type="text"  value="东北农业大学" onfocus="if(value=='东北农业大学'){value=''}" onblur="if(value==''){value='东北农业大学'}">
-            <div class="question">
-                你所在的年级 ：
-            </div>
-            <div class="radioBox">
-                    <radio-group class="radio-group" @change="gradeRadioChange">
-                        <label class="radio" v-for="(grade, index) in grades" :key="index">
-                            <radio :value="grade.name" :checked="grade.checked"/> {{grade.value}}
-                        </label>
-                    </radio-group>  
-            </div>
-            <div class="question">
-                你所学的专业 ：
-            </div>
-            <input class="aswerBox" type="text"  value="电气信息自动化" onfocus="if(value=='电气信息自动化'){value=''}" onblur="if(value==''){value='电气信息自动化'}">
-            <div class="question">
-                你正在使用的手机号码 ：
-            </div>
-            <input class="aswerBox" type="text">
-            <div class="tip">
-                非常重要，我们需要通过手机号码通知你申请结果
-            </div>
-            <div class="joinBtn">
-                下一步
-            </div>
-        </div>
+      <div :class="menu" v-if="show">
+          <div class="options">
+              <div class="optionText">首页</div>
+              <div class="optionText selectedOption">课程简介</div>
+              <div class="optionText">学习里程</div>
+              <div class="optionText">学员故事</div>
+              <div class="optionText">关于我们</div>
+              <div @click="gotoHome" class="optionText">现在报名</div>
+          </div>
+          <div class="hot">HOT</div>
+      </div>
+      <div class="contain">
+          <div class="title">
+              你的基本信息
+          </div>
+          <div class="threeLine">
+              <div class="redline lineColor1"></div>
+              <div class="redline lineColor2"></div>
+              <div class="redline lineColor3"></div>
+          </div>
+          <div class="question">
+              姓名 ：
+          </div>
+          <input class="aswerBox" type="text">
+          <div class="question">
+              你是 ：
+          </div>
+          <div class="radioBox">
+                  <radio-group class="radio-group" @change="sexRadioChange">
+                      <label class="radio" v-for="(sex, index) in sexs" :key="index">
+                          <radio :value="sex.name" :checked="sex.checked"/> {{sex.value}}
+                      </label>
+                  </radio-group>  
+          </div>
+          <div class="question">
+              你所在的学校或单位 ：
+          </div>
+          <input class="aswerBox" type="text"  value="东北农业大学" onfocus="if(value=='东北农业大学'){value=''}" onblur="if(value==''){value='东北农业大学'}">
+          <div class="question">
+              你所在的年级 ：
+          </div>
+          <div class="radioBox">
+                  <radio-group class="radio-group" @change="gradeRadioChange">
+                      <label class="radio" v-for="(grade, index) in grades" :key="index">
+                          <radio :value="grade.name" :checked="grade.checked"/> {{grade.value}}
+                      </label>
+                  </radio-group>  
+          </div>
+          <div class="question">
+              你所学的专业 ：
+          </div>
+          <input class="aswerBox" type="text"  value="电气信息自动化" onfocus="if(value=='电气信息自动化'){value=''}" onblur="if(value==''){value='电气信息自动化'}">
+          <div class="question">
+              你正在使用的手机号码 ：
+          </div>
+          <input class="aswerBox" type="text">
+          <div class="tip">
+              非常重要，我们需要通过手机号码通知你申请结果
+          </div>
+          <div class="joinBtn" @click="nextPage">
+              下一步
+          </div>
+      </div>
         
     </div>
 </template>
@@ -81,21 +92,42 @@ export default {
       line1: "line",
       line2: "line",
       line3: "line",
-      close: true
+      menu: "menu",
+      header: "header",
+      close: true,
+      show: false
     };
   },
   methods: {
-    change(close) {
+    timeout() {
+      return new Promise(resolve => {
+        setTimeout(resolve, 300);
+      })
+    },
+    async change(close) {
       this.close = !this.close;
+      
       if (close) {
         this.line1 = "line one";
         this.line2 = "line two";
         this.line3 = "line three";
+        this.header = "header2";
+        this.show = !this.show;
+        this.menu = "menu1 jumpDown";
       } else {
         this.line1 = "line2 one2";
         this.line2 = "line2 two2";
         this.line3 = "line2 three2";
+        this.menu = "menu jumpUp";
+        await this.timeout();
+        this.show = !this.show;
+        this.header = "header";
       }
+    },
+    nextPage() {
+      wx.navigateTo({
+        url: '../wenjuan2/main'
+      });
     }
   }
 };
@@ -106,17 +138,29 @@ export default {
   flex-direction: column;
 }
 .header {
+  z-index: 11;
   height: 142rpx;
   width: 100vw;
   /* background-color: red; */
   box-shadow: 0 2rpx 150rpx 0 rgba(207, 207, 207, 0.7);
+  position: fixed;
+  background-color: #fff;
+}
+.header2 {
+  z-index: 11;
+  height: 142rpx;
+  width: 100vw;
+  /* background-color: red; */
+  
+  position: fixed;
+  background-color: #fff;
 }
 .contain {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 51rpx;
+  padding-top: 193rpx;
   margin: 0 42rpx;
 }
 .title {
@@ -159,8 +203,8 @@ export default {
   /* margin-top: 20rpx; */
 }
 .radio {
-    margin-right: 100rpx;
-    /* margin-top: 20rpx; */
+  margin-right: 100rpx;
+  /* margin-top: 20rpx; */
 }
 /* .gradeStyle{
     display: flex;
@@ -285,7 +329,6 @@ export default {
 }
 
 .box {
-  
   display: flex;
   flex-direction: column;
   width: 50rpx;
@@ -313,5 +356,97 @@ export default {
   animation: three2 500ms ease 0.5ms forwards;
 }
 
+.menu {
+  z-index: 10;
+  flex: 1;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 100rpx;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgb(255, 255, 255);
+}
+.menu1 {
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  top: -5000rpx;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 100rpx;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgb(255, 255, 255);
+}
+/* .menuTab-enter-active {
+  animation: jumpDown .5s;
+}
+.menuTab-leave-active {
+  animation: jumpDown .5s reverse;
+} */
+
+@keyframes jumpDown {
+  0% {
+    top: -1500rpx;
+  }
+
+  100% {
+    top: 0rpx;
+  }
+}
+@keyframes jumpUp {
+  0% {
+    top: 0rpx;
+  }
+
+  100% {
+    top: -1500rpx;
+  }
+}
+.jumpDown {
+  animation: jumpDown 500ms ease 0.5ms forwards;
+}
+
+.jumpUp {
+  animation: jumpUp 500ms ease 0.5ms forwards;
+}
+.optionText {
+  display: flex;
+  align-items: center;
+  font-size: 40rpx;
+  padding-left: 120rpx;
+  height: 150rpx;
+  width: 472rpx;
+  font-weight: bold;
+}
+.selectedOption {
+  background: radial-gradient(
+    at 5% 110%,
+    rgb(252, 154, 174),
+    rgb(255, 0, 51) 80%
+  );
+  color: white;
+}
+.hot {
+  font-size: 20rpx;
+  color: white;
+  width: 82rpx;
+  height: 37rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(254, 36, 80);
+  border-radius: 37rpx;
+  position: relative;
+  bottom: 92rpx;
+  left: 300rpx;
+}
+.options {
+  z-index: 20;
+}
 </style>
 

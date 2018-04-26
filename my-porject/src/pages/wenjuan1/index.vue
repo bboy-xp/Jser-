@@ -30,7 +30,7 @@
           <div class="question">
               姓名 ：
           </div>
-          <input class="aswerBox" type="text">
+          <input class="aswerBox" type="text" v-model="name">
           <div class="question">
               你是 ：
           </div>
@@ -44,7 +44,7 @@
           <div class="question">
               你所在的学校或单位 ：
           </div>
-          <input class="aswerBox" type="text"  value="东北农业大学" onfocus="if(value=='东北农业大学'){value=''}" onblur="if(value==''){value='东北农业大学'}">
+          <input v-model="college" class="aswerBox" type="text"  onfocus="if(value=='东北农业大学'){value=''}" onblur="if(value==''){value='东北农业大学'}">
           <div class="question">
               你所在的年级 ：
           </div>
@@ -58,11 +58,11 @@
           <div class="question">
               你所学的专业 ：
           </div>
-          <input class="aswerBox" type="text"  value="电气信息自动化" onfocus="if(value=='电气信息自动化'){value=''}" onblur="if(value==''){value='电气信息自动化'}">
+          <input v-model="major" class="aswerBox" type="text" onfocus="if(value=='电气信息自动化'){value=''}" onblur="if(value==''){value='电气信息自动化'}">
           <div class="question">
               你正在使用的手机号码 ：
           </div>
-          <input class="aswerBox" type="text">
+          <input v-model="phoneNum" class="aswerBox" type="text">
           <div class="tip">
               非常重要，我们需要通过手机号码通知你申请结果
           </div>
@@ -77,17 +77,14 @@
 export default {
   data() {
     return {
-      sexs: [
-        { name: "sex", value: "男生", checked: "true" },
-        { name: "sex", value: "女生" }
-      ],
+      sexs: [{ name: "boy", value: "男生" }, { name: "girl", value: "女生" }],
       grades: [
-        { name: "grade", value: "大一", checked: "true" },
-        { name: "grade", value: "大二" },
-        { name: "grade", value: "大三" },
-        { name: "grade", value: "大四" },
-        { name: "grade", value: "研究生" },
-        { name: "grade", value: "已毕业" }
+        { name: "gradeOne", value: "大一" },
+        { name: "gradeTwo", value: "大二" },
+        { name: "gradeThree", value: "大三" },
+        { name: "gradeFour", value: "大四" },
+        { name: "gradeFive", value: "研究生" },
+        { name: "graduate", value: "已毕业" }
       ],
       line1: "line",
       line2: "line",
@@ -95,18 +92,29 @@ export default {
       menu: "menu",
       header: "header",
       close: true,
-      show: false
+      show: false,
+      name: "",
+      college: "东北农业大学",
+      major: "电气信息自动化",
+      phoneNum: "",
+      sex: "",
+      grade: ""
     };
+  },
+  watch: {
+    sexs: function() {
+      console.log(1);
+    }
   },
   methods: {
     timeout() {
       return new Promise(resolve => {
         setTimeout(resolve, 300);
-      })
+      });
     },
     async change(close) {
       this.close = !this.close;
-      
+
       if (close) {
         this.line1 = "line one";
         this.line2 = "line two";
@@ -125,9 +133,49 @@ export default {
       }
     },
     nextPage() {
-      wx.navigateTo({
-        url: '../wenjuan2/main'
-      });
+      // wx.navigateTo({
+      //   url: '../wenjuan2/main'
+      // });
+      var data = {};
+      data.name = this.name;
+      data.college = this.college;
+      data.major = this.major;
+      data.phoneNum = this.phoneNum;
+      data.sex = this.sex;
+      data.grade = this.grade;
+
+      console.log(data);
+    },
+    sexRadioChange(e) {
+      // console.log(e.target.value);
+      this.sex = e.target.value;
+      if (e.target.value === "boy") {
+        this.$set(this.sexs, 0, { name: "boy", value: "男生", checked: true });
+        this.$set(this.sexs, 1, {
+          name: "girl",
+          value: "女生",
+          checked: false
+        });
+      } else {
+        this.$set(this.sexs, 1, { name: "girl", value: "女生", checked: true });
+        this.$set(this.sexs, 0, {
+          name: "boy",
+          value: "男生",
+          checked: false
+        });
+      }
+    },
+
+    gradeRadioChange(e) {
+      // console.log(e.target.value);
+      this.grade = e.target.value;
+      for (let i = 0; i < this.grades.length; i++) {
+        if (this.grades[i].name == e.target.value) {
+          this.grades[i].checked = "true";
+        } else {
+          this.grades[i].checked = "false";
+        }
+      }
     }
   }
 };
@@ -151,7 +199,7 @@ export default {
   height: 142rpx;
   width: 100vw;
   /* background-color: red; */
-  
+
   position: fixed;
   background-color: #fff;
 }
@@ -195,6 +243,7 @@ export default {
   border-bottom: 1px solid rgb(207, 207, 207);
   width: 530rpx;
   margin-top: 30rpx;
+  font-size: 36rpx;
 }
 .radioBox {
   margin-top: 30rpx;

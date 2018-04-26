@@ -1,10 +1,11 @@
 <template>
   <div class="page">
-      <img src="" class="bg">
+      <!-- <image src="../../../static/pic/bg1.png" class="bg"> -->
+      <img src="/static/pic/bg1.png" class="bg">
       <!-- <div class="header"></div> -->
       <div class="contain">
           <div class="text1">三个月的蜕变<br>成为一名开发者</div>
-          <div class="btnBox">
+          <div class="btnBox" @click="gotoJoin">
             了解更多
           </div>
       </div>
@@ -19,12 +20,19 @@ export default {
     };
   },
   mounted() {},
-  methods: {}
+  methods: {
+    gotoJoin() {
+      wx.navigateTo({
+        url: '../wenan/main'
+      });
+    }
+  }
 };
 </script>
 <style scoped>
 .page {
   height: 100vh;
+  width: 100vw;
   overflow: hidden;
   display: flex;
   flex-direction: column;

@@ -53,7 +53,7 @@
             </div>
             <textarea class="introduce" maxlength="400"></textarea>
             <div class="joinBtn">
-                下一步
+                提交
             </div>
         </div>
         

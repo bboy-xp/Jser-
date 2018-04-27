@@ -31,7 +31,7 @@
                 你对计算机操作的熟练程度是？
             </div>
             <div class="radioBox">
-                    <radio-group class="radio-group" @change="radioChange">
+                    <radio-group class="radio-group" @change="levelRadioChange">
                         <label class="radio radioStyle" v-for="(level, index) in levels" :key="index">
                             <radio :value="level.name" :checked="level.checked"/> {{level.value}}
                         </label>
@@ -52,7 +52,7 @@
                 介绍一下你自己，说说你的兴趣爱好以及在大学的理想和成就<span class="note">（140字以上）</span>
             </div>
             <textarea v-model="introduce" class="introduce" maxlength="400"></textarea>
-            <div class="joinBtn">
+            <div class="joinBtn" @click="submit">
                 提交
             </div>
         </div>
@@ -60,6 +60,8 @@
     </div>
 </template>
 <script>
+import store from './store';
+
 export default {
   data() {
     return {
@@ -85,7 +87,14 @@ export default {
       show: false,
       otherReason: "",
       introduce: "",
+      level: "",
+      reasonArr: []
     };
+  },
+  mounted() {
+    setInterval(() => {
+      console.log(store.state.checkResult)
+    }, 1000); 
   },
   methods: {
     timeout() {
@@ -112,6 +121,49 @@ export default {
         this.show = !this.show;
         this.header = "header";
       }
+    },
+    levelRadioChange(e) {
+      this.level = e.target.value;
+      switch (e.target.value) {
+        case "level0":
+          this.$set(this.levels, 0, { name: "level0", value: "纯小白基本只会开机", checked: true });
+          this.$set(this.levels, 1, { name: "level1", value: "会基本的文档，表格，PPT的编辑操作", checked: false });
+          this.$set(this.levels, 2, { name: "level2", value: "熟练使用Office、Adobe等软件", checked: false });
+          this.$set(this.levels, 3, { name: "level3", value: "上天入地，无所不能", checked: false });
+          break;
+        case "level1":
+          this.$set(this.levels, 0, { name: "level0", value: "纯小白基本只会开机", checked: false });
+          this.$set(this.levels, 1, { name: "level1", value: "会基本的文档，表格，PPT的编辑操作", checked: true });
+          this.$set(this.levels, 2, { name: "level2", value: "熟练使用Office、Adobe等软件", checked: false });
+          this.$set(this.levels, 3, { name: "level3", value: "上天入地，无所不能", checked: false });
+          break;
+        case "level2":
+          this.$set(this.levels, 0, { name: "level0", value: "纯小白基本只会开机", checked: false });
+          this.$set(this.levels, 1, { name: "level1", value: "会基本的文档，表格，PPT的编辑操作", checked: false });
+          this.$set(this.levels, 2, { name: "level2", value: "熟练使用Office、Adobe等软件", checked: true });
+          this.$set(this.levels, 3, { name: "level3", value: "上天入地，无所不能", checked: false });
+          break;
+        case "level3":
+          this.$set(this.levels, 0, { name: "level0", value: "纯小白基本只会开机", checked: false });
+          this.$set(this.levels, 1, { name: "level1", value: "会基本的文档，表格，PPT的编辑操作", checked: false });
+          this.$set(this.levels, 2, { name: "level2", value: "熟练使用Office、Adobe等软件", checked: false });
+          this.$set(this.levels, 3, { name: "level3", value: "上天入地，无所不能", checked: true });
+          break;
+      }
+    },
+    checkboxChange(e) {
+      store.commit('changeCheckResult', e.target.value);
+      store.dispatch('changeSth', data)
+    },
+    submit() {
+      var data = {
+        level: this.level,
+        introduce: this.introduce,
+        otherReason: this.otherReason
+      }
+      // console.log(data);
+      // localStorage.data = JSON.stringify(data);
+      // console.log(localStorage.data);
     }
   }
 };

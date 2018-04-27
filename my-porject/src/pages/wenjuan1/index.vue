@@ -102,9 +102,9 @@ export default {
     };
   },
   watch: {
-    sexs: function() {
-      console.log(1);
-    }
+    // sexs: function() {
+    //   console.log(1);
+    // }
   },
   methods: {
     timeout() {
@@ -167,14 +167,57 @@ export default {
     },
 
     gradeRadioChange(e) {
-      // console.log(e.target.value);
+      console.log(e.target.value);
       this.grade = e.target.value;
-      for (let i = 0; i < this.grades.length; i++) {
-        if (this.grades[i].name == e.target.value) {
-          this.grades[i].checked = "true";
-        } else {
-          this.grades[i].checked = "false";
-        }
+      switch (e.target.value) {
+        case "gradeOne":
+          this.$set(this.grades, 0, { name: "gradeOne", value: "大一", checked: true });
+          this.$set(this.grades, 1, { name: "gradeTwo", value: "大二", checked: false });
+          this.$set(this.grades, 2, { name: "gradeThree", value: "大三", checked: false });
+          this.$set(this.grades, 3, { name: "gradeFour", value: "大四", checked: false });
+          this.$set(this.grades, 4, { name: "gradeFive", value: "研究生", checked: false });
+          this.$set(this.grades, 5, { name: "graduate", value: "已毕业", checked: false });
+          break;
+        case "gradeTwo":
+          this.$set(this.grades, 0, { name: "gradeOne", value: "大一", checked: false });
+          this.$set(this.grades, 1, { name: "gradeTwo", value: "大二", checked: true });
+          this.$set(this.grades, 2, { name: "gradeThree", value: "大三", checked: false });
+          this.$set(this.grades, 3, { name: "gradeFour", value: "大四", checked: false });
+          this.$set(this.grades, 4, { name: "gradeFive", value: "研究生", checked: false });
+          this.$set(this.grades, 5, { name: "graduate", value: "已毕业", checked: false });
+          break;
+        case "gradeThree":
+          this.$set(this.grades, 0, { name: "gradeOne", value: "大一", checked: false });
+          this.$set(this.grades, 1, { name: "gradeTwo", value: "大二", checked: false });
+          this.$set(this.grades, 2, { name: "gradeThree", value: "大三", checked: true });
+          this.$set(this.grades, 3, { name: "gradeFour", value: "大四", checked: false });
+          this.$set(this.grades, 4, { name: "gradeFive", value: "研究生", checked: false });
+          this.$set(this.grades, 5, { name: "graduate", value: "已毕业", checked: false });
+          break;
+        case "gradeFour":
+          this.$set(this.grades, 0, { name: "gradeOne", value: "大一", checked: false });
+          this.$set(this.grades, 1, { name: "gradeTwo", value: "大二", checked: false });
+          this.$set(this.grades, 2, { name: "gradeThree", value: "大三", checked: false });
+          this.$set(this.grades, 3, { name: "gradeFour", value: "大四", checked: true });
+          this.$set(this.grades, 4, { name: "gradeFive", value: "研究生", checked: false });
+          this.$set(this.grades, 5, { name: "graduate", value: "已毕业", checked: false });
+          break;
+        case "gradeFive":
+          this.$set(this.grades, 0, { name: "gradeOne", value: "大一", checked: false });
+          this.$set(this.grades, 1, { name: "gradeTwo", value: "大二", checked: false });
+          this.$set(this.grades, 2, { name: "gradeThree", value: "大三", checked: false });
+          this.$set(this.grades, 3, { name: "gradeFour", value: "大四", checked: false });
+          this.$set(this.grades, 4, { name: "gradeFive", value: "研究生", checked: true });
+          this.$set(this.grades, 5, { name: "graduate", value: "已毕业", checked: false });
+          break;
+        case "graduate":
+          this.$set(this.grades, 0, { name: "gradeOne", value: "大一", checked: false });
+          this.$set(this.grades, 1, { name: "gradeTwo", value: "大二", checked: false });
+          this.$set(this.grades, 2, { name: "gradeThree", value: "大三", checked: false });
+          this.$set(this.grades, 3, { name: "gradeFour", value: "大四", checked: false });
+          this.$set(this.grades, 4, { name: "gradeFive", value: "研究生", checked: false });
+          this.$set(this.grades, 5, { name: "graduate", value: "已毕业", checked: true });
+          break;
       }
     }
   }

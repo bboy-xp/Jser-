@@ -46,12 +46,12 @@
                         <checkbox :value="reason.name" :checked="reason.checked"/> {{reason.value}}
                     </label>
                 </checkbox-group> 
-                <input class="aswerBox" type="text">
+                <input v-model="otherReason" class="aswerBox" type="text">
             </div>
             <div class="question">
                 介绍一下你自己，说说你的兴趣爱好以及在大学的理想和成就<span class="note">（140字以上）</span>
             </div>
-            <textarea class="introduce" maxlength="400"></textarea>
+            <textarea v-model="introduce" class="introduce" maxlength="400"></textarea>
             <div class="joinBtn">
                 提交
             </div>
@@ -64,21 +64,17 @@ export default {
   data() {
     return {
       levels: [
-        { name: "level", value: "纯小白基本只会开机" },
-        {
-          name: "level",
-          value: "会基本的文档，表格，PPT的编辑操作",
-          checked: "true"
-        },
-        { name: "level", value: "熟练使用Office、Adobe等软件" },
-        { name: "level", value: "上天入地，无所不能" }
+        { name: "level0", value: "纯小白基本只会开机" },
+        { name: "level1", value: "会基本的文档，表格，PPT的编辑操作" },
+        { name: "level2", value: "熟练使用Office、Adobe等软件" },
+        { name: "level3", value: "上天入地，无所不能" }
       ],
       reasons: [
-        { name: "reason", value: "想提升自己的职业技能" },
-        { name: "reason", value: "想从事互联网相关工作", checked: "true" },
-        { name: "reason", value: "对互联网、电子产品有浓厚兴趣" },
-        { name: "reason", value: "想认识更多兴趣相投的校友" },
-        { name: "reason", value: "我还有其他的原因*" }
+        { name: "reason0", value: "想提升自己的职业技能" },
+        { name: "reason1", value: "想从事互联网相关工作" },
+        { name: "reason2", value: "对互联网、电子产品有浓厚兴趣" },
+        { name: "reason3", value: "想认识更多兴趣相投的校友" },
+        { name: "reason4", value: "我还有其他的原因*" }
       ],
       line1: "line",
       line2: "line",
@@ -86,7 +82,9 @@ export default {
       menu: "menu",
       header: "header",
       close: true,
-      show: false
+      show: false,
+      otherReason: "",
+      introduce: "",
     };
   },
   methods: {

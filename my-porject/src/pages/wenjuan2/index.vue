@@ -60,7 +60,7 @@
     </div>
 </template>
 <script>
-import store from './store';
+import store from '@/store';
 
 export default {
   data() {
@@ -153,7 +153,7 @@ export default {
     },
     checkboxChange(e) {
       store.commit('changeCheckResult', e.target.value);
-      store.dispatch('changeSth', data)
+      // store.dispatch('changeSth', data)
     },
     submit() {
       var data = {

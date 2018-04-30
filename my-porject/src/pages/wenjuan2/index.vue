@@ -92,9 +92,15 @@ export default {
     };
   },
   mounted() {
-    setInterval(() => {
-      console.log(store.state.checkResult)
-    }, 1000); 
+    // setInterval(() => {
+    //   console.log(store.state.checkResult);
+    //   console.log(store.state.name,
+    //   store.state.major,
+    //   store.state.grade,
+    //   store.state.sex,
+    //   store.state.  phoneNum,
+    //   store.state.college);
+    // }, 1000); 
   },
   methods: {
     timeout() {
@@ -160,8 +166,15 @@ export default {
         level: this.level,
         introduce: this.introduce,
         otherReason: this.otherReason
-      }
-      // console.log(data);
+      } 
+      data.name = store.state.name;
+      data.sex = store.state.sex;
+      data.grade = store.state.grade;
+      data.major = store.state.major;
+      data.college = store.state.college;
+      data.phoneNum = store.state.phoneNum;
+      data.reason = store.state.checkResult;
+      console.log(data);
       // localStorage.data = JSON.stringify(data);
       // console.log(localStorage.data);
     }

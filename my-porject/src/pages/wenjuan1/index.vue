@@ -134,9 +134,6 @@ export default {
       }
     },
     nextPage() {
-      // wx.navigateTo({
-      //   url: '../wenjuan2/main'
-      // });
       var data = {};
       data.name = this.name;
       data.college = this.college;
@@ -145,7 +142,17 @@ export default {
       data.sex = this.sex;
       data.grade = this.grade;
 
-      console.log(data);
+      store.commit('firstPageData',data);
+      // console.log(store.state.name,
+      // store.state.major,
+      // store.state.grade,
+      // store.state.sex,
+      // store.state.  phoneNum,
+      // store.state.college);
+      // console.log(data);
+      wx.navigateTo({
+        url: '../wenjuan2/main'
+      });
     },
     sexRadioChange(e) {
       // console.log(e.target.value);

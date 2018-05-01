@@ -61,7 +61,9 @@
 </template>
 <script>
 import store from '@/store';
-
+// import axios from 'axios';
+const Fly=require("flyio") ;
+const fly=new Fly;
 export default {
   data() {
     return {
@@ -161,7 +163,7 @@ export default {
       store.commit('changeCheckResult', e.target.value);
       // store.dispatch('changeSth', data)
     },
-    submit() {
+    async submit() {
       var data = {
         level: this.level,
         introduce: this.introduce,
@@ -175,6 +177,16 @@ export default {
       data.phoneNum = store.state.phoneNum;
       data.reason = store.state.checkResult;
       console.log(data);
+      // const postData =await new Promise((resolve,reject) => {
+      //   fly.post('/postUsermsg',data).then(res => {
+      //     resolve(res.data);
+      //   })
+      // });
+      //居然没有跨域的问题，不用设置proxytable！！
+      fly.post('http://127.0.0.1:7001/postUsermsg',data).then(res => {
+        console.log(res.data);
+      })
+      console.log(postData);
       // localStorage.data = JSON.stringify(data);
       // console.log(localStorage.data);
     }

@@ -10,9 +10,15 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "dgram": "^1.0.1",
+    "dns": "^0.2.2",
+    "flyio": "^0.5.5",
     "fs": "0.0.1-security",
     "mpvue": "^1.0.8",
+    "net": "^1.0.2",
     "path": "^0.12.7",
+    "tls": "0.0.1",
     "vuex": "^2.3.1"
   },
   "devDependencies": {

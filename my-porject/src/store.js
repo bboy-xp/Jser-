@@ -7,11 +7,15 @@ const store = new Vuex.Store({
   state: {
     checkResult: [],
     name: "",
-    sex:"",
+    sex: "",
     grade: "",
     college: "",
     major: "",
-    phoneNum :""
+    phoneNum: "",
+    level: "",
+    introduce: "",
+    otherReason: ""
+
   },
   mutations: {
     changeCheckResult: (state, payload) => {
@@ -25,13 +29,33 @@ const store = new Vuex.Store({
       state.major = payload.major;
       state.phoneNum = payload.phoneNum;
     },
+    secondPageData: (state, payload) => {
+      state.level = payload.level;
+      state.introduce = payload.introduce;
+      state.otherReason = payload.otherReason;
+    }
   },
-//   actions: {
-//     async changeSth ({ state, commit }, payload) {
-//       const result= await axios();
-//       commit('changeCheckResult', result);
-//     }
-//   }
+  actions: {
+    async submit({ state }) {
+      // const result= await axios();
+      // commit('changeCheckResult', result);
+      const data = {
+        reason: state.checkResult,
+        name: state.name,
+        sex: state.sex,
+        grade: state.grade,
+        college: state.college,
+        major: state.major,
+        phoneNum: state.phoneNum,
+        level: state.level,
+        introduce: state.introduce,
+        otherReason:state.otherReason
+      }
+      console.log('走到这里了');
+      const result = await fly.post('http://127.0.0.1:7001/postUsermsg', data);
+      console.log(result);
+    }
+  }
 })
 
 export default store

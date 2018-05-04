@@ -39,6 +39,8 @@ export default {
 }
 
 .contain {
+  width: 100vw;
+  height: 100vh;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -66,7 +68,7 @@ export default {
 .bg {
   filter: brightness(0.7);
   position: absolute;
-  z-index: -1;
+  z-index: -100;
   height: 100vh;
   width: 250vw;
   /* left: -100vw; */

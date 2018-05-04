@@ -108,18 +108,18 @@ export default {
     // }
   },
   mounted() {
-    setInterval(() => {
-      console.log(store.state.checkResult);
-      console.log(store.state.name,
-      store.state.major,
-      store.state.grade,
-      store.state.sex,
-      store.state.phoneNum,
-      store.state.college,
-      store.state.level,
-      store.state.introduce,
-      store.state.otherReason,);
-    }, 1000); 
+    // setInterval(() => {
+    //   console.log(store.state.checkResult);
+    //   console.log(store.state.name,
+    //   store.state.major,
+    //   store.state.grade,
+    //   store.state.sex,
+    //   store.state.phoneNum,
+    //   store.state.college,
+    //   store.state.level,
+    //   store.state.introduce,
+    //   store.state.otherReason,);
+    // }, 1000); 
   },
   methods: {
     timeout() {

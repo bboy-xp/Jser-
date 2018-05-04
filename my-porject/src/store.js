@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+const Fly = require('flyio');
+const fly = new Fly();
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -73,9 +76,16 @@ const store = new Vuex.Store({
         introduce: state.introduce,
         otherReason:state.otherReason
       }
-      console.log('走到这里了');
       const result = await fly.post('http://127.0.0.1:7001/postUsermsg', data);
-      console.log(result);
+      if(result.data == 'ok'){
+        wx.showModal({
+          title: '提示',
+          content: '提交成功',
+          showCancel: false
+        })
+      }
+      // console.log('走到这里了');
+      // console.log(result);
     }
   }
 })

@@ -134,37 +134,7 @@ export default {
       }
     },
     levelRadioChange(e) {
-      // this.level = e.target.value;
-      // var data = {
-      //   level: e.target.value
-      // }
       store.commit('levelRadioChange',e.target.value);
-      // switch (e.target.value) {
-      //   case "level0":
-      //     this.$set(this.levels, 0, { name: "level0", value: "纯小白基本只会开机", checked: true });
-      //     this.$set(this.levels, 1, { name: "level1", value: "会基本的文档，表格，PPT的编辑操作", checked: false });
-      //     this.$set(this.levels, 2, { name: "level2", value: "熟练使用Office、Adobe等软件", checked: false });
-      //     this.$set(this.levels, 3, { name: "level3", value: "上天入地，无所不能", checked: false });
-      //     break;
-      //   case "level1":
-      //     this.$set(this.levels, 0, { name: "level0", value: "纯小白基本只会开机", checked: false });
-      //     this.$set(this.levels, 1, { name: "level1", value: "会基本的文档，表格，PPT的编辑操作", checked: true });
-      //     this.$set(this.levels, 2, { name: "level2", value: "熟练使用Office、Adobe等软件", checked: false });
-      //     this.$set(this.levels, 3, { name: "level3", value: "上天入地，无所不能", checked: false });
-      //     break;
-      //   case "level2":
-      //     this.$set(this.levels, 0, { name: "level0", value: "纯小白基本只会开机", checked: false });
-      //     this.$set(this.levels, 1, { name: "level1", value: "会基本的文档，表格，PPT的编辑操作", checked: false });
-      //     this.$set(this.levels, 2, { name: "level2", value: "熟练使用Office、Adobe等软件", checked: true });
-      //     this.$set(this.levels, 3, { name: "level3", value: "上天入地，无所不能", checked: false });
-      //     break;
-      //   case "level3":
-      //     this.$set(this.levels, 0, { name: "level0", value: "纯小白基本只会开机", checked: false });
-      //     this.$set(this.levels, 1, { name: "level1", value: "会基本的文档，表格，PPT的编辑操作", checked: false });
-      //     this.$set(this.levels, 2, { name: "level2", value: "熟练使用Office、Adobe等软件", checked: false });
-      //     this.$set(this.levels, 3, { name: "level3", value: "上天入地，无所不能", checked: true });
-      //     break;
-      // }
     },
     checkboxChange(e) {
       store.commit('changeCheckResult', e.target.value);
@@ -178,32 +148,7 @@ export default {
       store.commit('otherReasonChange',e.target.value);
     },
     async submit() {
-      
-      
-      
-
       store.dispatch('submit');
-      // data.name = store.state.name;
-      // data.sex = store.state.sex;
-      // data.grade = store.state.grade;
-      // data.major = store.state.major;
-      // data.college = store.state.college;
-      // data.phoneNum = store.state.phoneNum;
-      // data.reason = store.state.checkResult;
-      // console.log(data);
-      // const postData =await new Promise((resolve,reject) => {
-      //   fly.post('/postUsermsg',data).then(res => {
-      //     resolve(res.data);
-      //   })
-      // });
-      //居然没有跨域的问题，不用设置proxytable！！
-      // fly.post('http://127.0.0.1:7001/postUsermsg',data).then(res => {
-      //   console.log(res.data);
-      // })
-      // console.log(postData);
-
-      // localStorage.data = JSON.stringify(data);
-      // console.log(localStorage.data);
     }
   }
 };

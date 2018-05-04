@@ -51,7 +51,7 @@
             <div class="question">
                 介绍一下你自己，说说你的兴趣爱好以及在大学的理想和成就<span class="note">（140字以上）</span>
             </div>
-            <textarea v-model="introduce" class="introduce" maxlength="400"></textarea>
+            <textarea @change="introduceChange" class="introduce" maxlength="400"></textarea>
             <div class="joinBtn" @click="submit">
                 提交
             </div>
@@ -94,18 +94,18 @@ export default {
     };
   },
   mounted() {
-    // setInterval(() => {
-    //   console.log(store.state.checkResult);
-    //   console.log(store.state.name,
-    //   store.state.major,
-    //   store.state.grade,
-    //   store.state.sex,
-    //   store.state.phoneNum,
-    //   store.state.college,
-    //   store.state.level,
-    //   store.state.introduce,
-    //   store.state.otherReason,);
-    // }, 1000); 
+    setInterval(() => {
+      console.log(store.state.checkResult);
+      console.log(store.state.name,
+      store.state.major,
+      store.state.grade,
+      store.state.sex,
+      store.state.phoneNum,
+      store.state.college,
+      store.state.level,
+      store.state.introduce,
+      store.state.otherReason,);
+    }, 1000); 
   },
   methods: {
     timeout() {
@@ -135,10 +135,10 @@ export default {
     },
     levelRadioChange(e) {
       // this.level = e.target.value;
-      var data = {
-        level: e.target.value
-      }
-      store.commit('secondPageData',data);
+      // var data = {
+      //   level: e.target.value
+      // }
+      store.commit('levelRadioChange',e.target.value);
       // switch (e.target.value) {
       //   case "level0":
       //     this.$set(this.levels, 0, { name: "level0", value: "纯小白基本只会开机", checked: true });
@@ -170,17 +170,17 @@ export default {
       store.commit('changeCheckResult', e.target.value);
       // store.dispatch('changeSth', data)
     },
+    introduceChange(e) {
+      store.commit('introduceChange',e.target.value);
+    },
     otherReasonChange(e) {
-      console.log(e.target.value);
+      // console.log(e.target.value);
+      store.commit('otherReasonChange',e.target.value);
     },
     async submit() {
-      var data = {
-        introduce: this.introduce,
-        otherReason: this.otherReason,
-        level: this.level
-      } 
       
-      store.commit('secondPageData',data);
+      
+      
 
       store.dispatch('submit');
       // data.name = store.state.name;

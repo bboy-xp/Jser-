@@ -81,8 +81,13 @@ const store = new Vuex.Store({
         wx.showModal({
           title: '提示',
           content: '提交成功',
-          showCancel: false
-        })
+          showCancel: false,
+          success: function (res) {
+            wx.redirectTo({
+              url: '../home/main'
+            });
+          }
+        });
       }
       // console.log('走到这里了');
       // console.log(result);

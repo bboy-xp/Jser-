@@ -103,13 +103,32 @@ export default {
         this.header = "header";
       }
     },
-    gotoJoin() {
-      wx.navigateTo({
+    async gotoJoin() {
+      this.line1 = "line2 one2";
+      this.line2 = "line2 two2";
+      this.line3 = "line2 three2";
+      this.menu = "menu jumpUp";
+      await this.timeout();
+      this.show = !this.show;
+      this.header = "header";
+
+      wx.redirectTo({
         url: '../wenjuan1/main'
       });
+
     },
-    gotoHome() {
-      wx.navigateTo({
+    async gotoHome() {
+      this.line1 = "line2 one2";
+      this.line2 = "line2 two2";
+      this.line3 = "line2 three2";
+      this.menu = "menu jumpUp";
+      await this.timeout();
+      this.show = !this.show;
+      this.header = "header";
+      //将close恢复初始值，防止动画混乱
+      this.close = true;
+
+      wx.redirectTo({
         url: '../home/main'
       });
     }
@@ -135,7 +154,7 @@ export default {
   height: 142rpx;
   width: 100vw;
   /* background-color: red; */
-  
+
   position: fixed;
   background-color: #fff;
 }

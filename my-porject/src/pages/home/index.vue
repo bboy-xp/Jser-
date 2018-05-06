@@ -22,7 +22,7 @@ export default {
   mounted() {},
   methods: {
     gotoJoin() {
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../wenan/main'
       });
     }

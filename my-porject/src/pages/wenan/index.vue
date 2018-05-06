@@ -10,10 +10,10 @@
       <div :class="menu" v-if="show">
           <div class="options">
               <div class="optionText" @click="gotoHome">首页</div>
-              <div class="optionText selectedOption">课程简介</div>
-              <div class="optionText">学习里程</div>
-              <div class="optionText">学员故事</div>
-              <div class="optionText">关于我们</div>
+              <div class="optionText selectedOption" @click="gotoWenan">课程简介</div>
+              <div class="optionText" @click="noGoto">学习里程</div>
+              <div class="optionText" @click="noGoto">学员故事</div>
+              <div class="optionText" @click="noGoto">关于我们</div>
               <div @click="gotoJoin" class="optionText">现在报名</div>
           </div>
           <div class="hot">HOT</div>
@@ -131,6 +131,32 @@ export default {
       wx.redirectTo({
         url: '../home/main'
       });
+    },
+    async gotoWenan() {
+      this.line1 = "line2 one2";
+      this.line2 = "line2 two2";
+      this.line3 = "line2 three2";
+      this.menu = "menu jumpUp";
+      await this.timeout();
+      this.show = !this.show;
+      this.header = "header";
+      //将close恢复初始值，防止动画混乱
+      this.close = true;
+
+      wx.redirectTo({
+        url: '../wenan/main'
+      });
+    },
+    async noGoto() {
+      this.line1 = "line2 one2";
+      this.line2 = "line2 two2";
+      this.line3 = "line2 three2";
+      this.menu = "menu jumpUp";
+      await this.timeout();
+      this.show = !this.show;
+      this.header = "header";
+      //将close恢复初始值，防止动画混乱
+      this.close = true;
     }
   }
 };

@@ -14,17 +14,21 @@
 </template>
 <script>
 import store from "@/store";
+const Fly = require('flyio');
+const fly = new Fly();
+
 export default {
   data() {
-    return {};
+    return {
+    };
   },
 
   mounted() {
-    // setInterval(() => {
-    //   console.log(store.state.openId);
+    setInterval(() => {
+      console.log(store.state);
       
-    // }, 1000); 
-
+    }, 1000); 
+    // const that = this;
     wx.login({
       success: function(res) {
         if (res.code) {
@@ -40,11 +44,25 @@ export default {
             },
             method: 'GET',
             header: { 'content-type': 'application/json'},
-            success: function (openIdRes) {
+            success: async function (openIdRes) {
               console.info("登录成功返回的openId：" + openIdRes.data.openid);
               const openId = openIdRes.data.openid;
-
-              store.commit('openIdChange',openId);
+              // store.commit('openIdChange',openId);
+              const result = await fly.post('http://127.0.0.1:7001/getUsermsg',{openId: openId});
+              // console.log(result.data);
+              const data = result.data;
+              console.log(data.name);
+              store.commit('openIdChange',data.openId);
+              store.commit('changeCheckResult',data.reason);
+              store.commit('nameChange',data.name);
+              store.commit('sexRadioChange',data.sex);
+              store.commit('gradeRadioChange',data.grade);
+              store.commit('collegeChange',data.college);
+              store.commit('majorChange',data.major);
+              store.commit('phoneNumChange',data.phoneNum);
+              store.commit('levelRadioChange',data.level);
+              store.commit('introduceChange',data.introduce);
+              store.commit('otherReasonChange',data.otherReason);
             }
           });
         } else {
@@ -52,6 +70,7 @@ export default {
         }
       }
     });
+    
   },
   methods: {
     gotoJoin() {

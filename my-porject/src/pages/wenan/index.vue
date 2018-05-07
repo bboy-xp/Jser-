@@ -74,7 +74,7 @@ export default {
       menu: "menu",
       header: "header",
       close: true,
-      show: false
+      show: false,
     };
   },
   methods: {
@@ -85,7 +85,7 @@ export default {
     },
     async change(close) {
       this.close = !this.close;
-      
+
       if (close) {
         this.line1 = "line one";
         this.line2 = "line two";

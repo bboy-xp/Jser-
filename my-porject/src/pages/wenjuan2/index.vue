@@ -51,7 +51,7 @@
             <div class="question">
                 介绍一下你自己，说说你的兴趣爱好以及在大学的理想和成就<span class="note">（140字以上）</span>
             </div>
-            <textarea @change="introduceChange" class="introduce" maxlength="400"></textarea>
+            <textarea id="textarea" @focus="addpadding" @blur="removepadding" @change="introduceChange" :class="introduce" maxlength="400" cursor-spacing="20"></textarea>
             <div class="joinBtn" @click="submit">
                 提交
             </div>
@@ -83,12 +83,12 @@ export default {
       line1: "line",
       line2: "line",
       line3: "line",
+      introduce: "introduce1",
       menu: "menu",
       header: "header",
       close: true,
       show: false,
       otherReason: "",
-      introduce: "",
       level: "",
       reasonArr: []
     };
@@ -133,6 +133,7 @@ export default {
         this.header = "header";
       }
     },
+    
     levelRadioChange(e) {
       store.commit('levelRadioChange',e.target.value);
     },
@@ -195,6 +196,7 @@ export default {
 };
 </script>
 <style scoped>
+
 .page {
   display: flex;
   flex-direction: column;
@@ -308,7 +310,7 @@ export default {
   font-size: 32rpx;
   color: rgb(155, 155, 155);
 }
-.introduce {
+.introduce1 {
   height: 340rpx;
   width: 640rpx;
   margin-top: 30rpx;
@@ -316,6 +318,17 @@ export default {
   border-radius: 28rpx;
   padding: 10rpx;
   font-size: 30rpx;
+}
+.introduce2 {
+  height: 340rpx;
+  width: 640rpx;
+  margin-top: 30rpx;
+  margin-bottom: 450rpx;
+  border: 2rpx solid rgb(214, 214, 214);
+  border-radius: 28rpx;
+  padding: 10rpx;
+  font-size: 30rpx;
+  
 }
 
 @keyframes one {
@@ -529,5 +542,6 @@ export default {
 .options {
   z-index: 20;
 }
+
 </style>
 

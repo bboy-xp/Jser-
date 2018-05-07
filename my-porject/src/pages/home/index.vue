@@ -13,17 +13,50 @@
   </div>
 </template>
 <script>
+import store from "@/store";
 export default {
   data() {
-    return {
-      
-    };
+    return {};
   },
-  mounted() {},
+
+  mounted() {
+    // setInterval(() => {
+    //   console.log(store.state.openId);
+      
+    // }, 1000); 
+
+    wx.login({
+      success: function(res) {
+        if (res.code) {
+          console.log("登录成功返回的CODE：" + res.code);
+          wx.request({
+            url: "https://api.weixin.qq.com/sns/jscode2session",
+            data: {
+              //小程序唯一标识
+              appid: "wxa65b857e40095d0e", //小程序的 app secret
+              secret: "40030bc4b3d3af6bafb81ff33c459a50",
+              grant_type: "authorization_code",
+              js_code: res.code
+            },
+            method: 'GET',
+            header: { 'content-type': 'application/json'},
+            success: function (openIdRes) {
+              console.info("登录成功返回的openId：" + openIdRes.data.openid);
+              const openId = openIdRes.data.openid;
+
+              store.commit('openIdChange',openId);
+            }
+          });
+        } else {
+          console.info("获取用户openId失败");
+        }
+      }
+    });
+  },
   methods: {
     gotoJoin() {
       wx.redirectTo({
-        url: '../wenan/main'
+        url: "../wenan/main"
       });
     }
   }

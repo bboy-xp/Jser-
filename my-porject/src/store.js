@@ -8,6 +8,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
+    openId:'',
     checkResult: [],
     name: "",
     sex: "",
@@ -21,6 +22,9 @@ const store = new Vuex.Store({
 
   },
   mutations: {
+    openIdChange: (state, payload) => {
+      state.openId = payload;
+    },
     nameChange: (state, payload) => {
       state.name = payload;
     },
@@ -65,6 +69,7 @@ const store = new Vuex.Store({
       // const result= await axios();
       // commit('changeCheckResult', result);
       const data = {
+        openId: state.openId,
         reason: state.checkResult,
         name: state.name,
         sex: state.sex,

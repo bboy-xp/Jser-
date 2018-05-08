@@ -30,7 +30,7 @@
           <div class="question">
               姓名 ：
           </div>
-          <input class="aswerBox" type="text" @change="nameChange">
+          <input :value="name" class="aswerBox" type="text" @change="nameChange">
           <div class="question">
               你是 ：
           </div>
@@ -44,7 +44,7 @@
           <div class="question">
               你所在的学校或单位 ：
           </div>
-          <input @change="collegeChange" class="aswerBox" type="text">
+          <input :value="college" @change="collegeChange" class="aswerBox" type="text">
           <div class="question">
               你所在的年级 ：
           </div>
@@ -60,11 +60,11 @@
           <div class="question">
               你所学的专业 ：
           </div>
-          <input @change="majorChange" class="aswerBox" type="text" >
+          <input :value="major" @change="majorChange" class="aswerBox" type="text" >
           <div class="question">
               你正在使用的手机号码 ：
           </div>
-          <input @change="phoneNumChange" class="aswerBox" type="text">
+          <input :value="phoneNum" @change="phoneNumChange" class="aswerBox" type="text">
           <div class="tip">
               非常重要，我们需要通过手机号码通知你申请结果
           </div>
@@ -99,7 +99,9 @@ export default {
       name: "",
       phoneNum: "",
       sex: "",
-      grade: ""
+      grade: "",
+      major: "",
+      college: ""
     };
   },
   watch: {
@@ -120,6 +122,25 @@ export default {
     //   store.state.introduce,
     //   store.state.otherReason,);
     // }, 1000); 
+    console.log(this);
+    this.name = store.state.name;
+    this.major = store.state.major;
+    this.college = store.state.college;
+    this.phoneNum = store.state.phoneNum;
+    for (let i = 0; i < this.sexs.length; i++) {
+      if (store.state.sex == this.sexs[i].name) {
+        // console.log("ok");
+        console.log(this.sexs[i]);
+        this.sexs[i].checked = true;
+      }
+    }
+    for (let i = 0; i < this.grades.length; i++) {
+      if (store.state.grade == this.grades[i].name) {
+        // console.log("ok");
+        console.log(this.grades[i]);
+        this.grades[i].checked = true;
+      }
+    }
   },
   methods: {
     timeout() {
@@ -148,7 +169,7 @@ export default {
       }
     },
     nextPage() {
-      var data = {};
+      let data = {};
       data.name = this.name;
       data.college = this.college;
       data.major = this.major;

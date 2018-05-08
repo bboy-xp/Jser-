@@ -46,12 +46,12 @@
                         <checkbox :value="reason.name" :checked="reason.checked"/> {{reason.value}}
                     </label>
                 </checkbox-group> 
-                <input @change="otherReasonChange" class="aswerBox" type="text">
+                <input :value="otherReason" @change="otherReasonChange" class="aswerBox" type="text">
             </div>
             <div class="question">
                 介绍一下你自己，说说你的兴趣爱好以及在大学的理想和成就<span class="note">（140字以上）</span>
             </div>
-            <textarea id="textarea" @focus="addpadding" @blur="removepadding" @change="introduceChange" :class="introduce" maxlength="400" cursor-spacing="20"></textarea>
+            <textarea :value="introduce1" class="introduce1" id="textarea" @focus="addpadding" @blur="removepadding" @change="introduceChange" maxlength="400" cursor-spacing="20"></textarea>
             <div class="joinBtn" @click="submit">
                 提交
             </div>
@@ -83,7 +83,8 @@ export default {
       line1: "line",
       line2: "line",
       line3: "line",
-      introduce: "introduce1",
+      // introduce: "introduce1",
+      introduce1: "",
       menu: "menu",
       header: "header",
       close: true,
@@ -106,6 +107,26 @@ export default {
     //   store.state.introduce,
     //   store.state.otherReason,);
     // }, 1000); 
+    this.otherReason = store.state.otherReason;
+    this.introduce1 = store.state.introduce;
+    // console.log(this.levels);
+    for (let i = 0; i < this.levels.length; i++) {
+      // console.log(this.levels[i].name);  
+      if (store.state.level == this.levels[i].name) {
+        // console.log("ok");
+        console.log(this.levels[i]);
+        this.levels[i].checked = true;
+      }
+    }
+    console.log(store.state.checkResult);
+    for (let j = 0; j < store.state.checkResult.length; j++) {
+      for (let i = 0; i < this.reasons.length; i++) {
+        if (store.state.checkResult[j] == this.reasons[i].name) {
+          this.reasons[i].checked = true;
+          // console.log(111);
+        }
+      }
+    }
   },
   methods: {
     timeout() {

@@ -24,10 +24,10 @@ export default {
   },
 
   mounted() {
-    setInterval(() => {
-      console.log(store.state);
+    // setInterval(() => {
+    //   console.log(store.state);
       
-    }, 1000); 
+    // }, 1000); 
     // const that = this;
     wx.login({
       success: function(res) {
@@ -48,7 +48,7 @@ export default {
               console.info("登录成功返回的openId：" + openIdRes.data.openid);
               const openId = openIdRes.data.openid;
               // store.commit('openIdChange',openId);
-              const result = await fly.post('http://127.0.0.1:7001/getUsermsg',{openId: openId});
+              const result = await fly.post('http://sxp.topsxp.top:7001/getUsermsg',{openId: openId});
               // console.log(result.data);
               const data = result.data;
               console.log(data.name);

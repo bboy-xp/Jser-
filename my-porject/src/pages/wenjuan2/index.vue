@@ -163,7 +163,9 @@ export default {
       // store.dispatch('changeSth', data)
     },
     introduceChange(e) {
+      console.log(e.target.value);
       store.commit('introduceChange',e.target.value);
+      console.log(store.state.introduce);
     },
     otherReasonChange(e) {
       // console.log(e.target.value);

@@ -47,12 +47,13 @@ export default {
             success: async function (openIdRes) {
               console.info("登录成功返回的openId：" + openIdRes.data.openid);
               const openId = openIdRes.data.openid;
-              // store.commit('openIdChange',openId);
+              store.commit('openIdChange',openId);
+              console.log(openId);
+              console.log(store.state.openId);
               const result = await fly.post('http://sxp.topsxp.top:7001/getUsermsg',{openId: openId});
               // console.log(result.data);
               const data = result.data;
-              console.log(data.name);
-              store.commit('openIdChange',data.openId);
+              // console.log(data.name);
               store.commit('changeCheckResult',data.reason);
               store.commit('nameChange',data.name);
               store.commit('sexRadioChange',data.sex);

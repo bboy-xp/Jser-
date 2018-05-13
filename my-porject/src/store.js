@@ -82,8 +82,8 @@ const store = new Vuex.Store({
         otherReason:state.otherReason
       }
       console.log(data);
-      const result = await fly.post('http://sxp.topsxp.top:7001/postUsermsg', data);
-      // const result = await fly.post('http://127.0.0.1:7001/postUsermsg', data);
+      // const result = await fly.post('http://sxp.topsxp.top:7001/postUsermsg', data);
+      const result = await fly.post('http://127.0.0.1:7001/postUsermsg', data);
       if(result.data == 'ok'){
         wx.showModal({
           title: '提示',

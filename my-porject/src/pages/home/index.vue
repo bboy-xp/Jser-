@@ -50,8 +50,8 @@ export default {
               store.commit('openIdChange',openId);
               console.log(openId);
               console.log(store.state.openId);
-              const result = await fly.post('http://sxp.topsxp.top:7001/getUsermsg',{openId: openId});
-              // const result = await fly.post('http://127.0.0.1:7001/getUsermsg',{openId: openId});
+              // const result = await fly.post('http://sxp.topsxp.top:7001/getUsermsg',{openId: openId});
+              const result = await fly.post('http://127.0.0.1:7001/getUsermsg',{openId: openId});
               // console.log(result.data);
               const data = result.data;
               // console.log(data.name);

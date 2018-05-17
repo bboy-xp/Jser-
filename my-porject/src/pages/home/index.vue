@@ -14,65 +14,75 @@
 </template>
 <script>
 import store from "@/store";
-const Fly = require('flyio');
+const Fly = require("flyio");
 const fly = new Fly();
 
 export default {
   data() {
-    return {
-    };
+    return {};
   },
 
-  mounted() {
+  async mounted() {
     // setInterval(() => {
     //   console.log(store.state);
-      
-    // }, 1000); 
+
+    // }, 1000);
     // const that = this;
-    wx.login({
-      success: function(res) {
-        if (res.code) {
-          console.log("登录成功返回的CODE：" + res.code);
-          wx.request({
-            url: "https://api.weixin.qq.com/sns/jscode2session",
-            data: {
-              //小程序唯一标识
-              appid: "wxa65b857e40095d0e", //小程序的 app secret
-              secret: "40030bc4b3d3af6bafb81ff33c459a50",
-              grant_type: "authorization_code",
-              js_code: res.code
-            },
-            method: 'GET',
-            header: { 'content-type': 'application/json'},
-            success: async function (openIdRes) {
-              console.info("登录成功返回的openId：" + openIdRes.data.openid);
-              const openId = openIdRes.data.openid;
-              store.commit('openIdChange',openId);
-              console.log(openId);
-              console.log(store.state.openId);
-              // const result = await fly.post('http://sxp.topsxp.top:7001/getUsermsg',{openId: openId});
-              const result = await fly.post('http://127.0.0.1:7001/getUsermsg',{openId: openId});
-              // console.log(result.data);
-              const data = result.data;
-              // console.log(data.name);
-              store.commit('changeCheckResult',data.reason);
-              store.commit('nameChange',data.name);
-              store.commit('sexRadioChange',data.sex);
-              store.commit('gradeRadioChange',data.grade);
-              store.commit('collegeChange',data.college);
-              store.commit('majorChange',data.major);
-              store.commit('phoneNumChange',data.phoneNum);
-              store.commit('levelRadioChange',data.level);
-              store.commit('introduceChange',data.introduce);
-              store.commit('otherReasonChange',data.otherReason);
+    // console.log(111);
+    const getOpenId = function () {
+      return new Promise((resolve, reject) => {
+        wx.login({
+          success: function(res) {
+            if (res.code) {
+              // console.log("登录成功返回的CODE：" + res.code);
+              wx.request({
+                url: "https://api.weixin.qq.com/sns/jscode2session",
+                data: {
+                  //小程序唯一标识
+                  appid: "wxa65b857e40095d0e", //小程序的 app secret
+                  secret: "40030bc4b3d3af6bafb81ff33c459a50",
+                  grant_type: "authorization_code",
+                  js_code: res.code
+                },
+                method: "GET",
+                header: { "content-type": "application/json" },
+                success: async function(openIdRes) {
+                  console.info("登录成功返回的openId：" + openIdRes.data.openid);
+                  const openId = openIdRes.data.openid;
+                  store.commit("openIdChange", openId);
+                  // console.log(openId);
+                  // console.log(store.state.openId);
+                  // const result = await fly.post('http://sxp.topsxp.top:7001/getUsermsg',{openId: openId});
+                  const result = await fly.post(
+                    "http://127.0.0.1:7001/getUsermsg",
+                    { openId: openId }
+                  );
+  
+                  // console.log(result.data);
+                  const data = result.data;
+                  // console.log(data.name);
+                  store.commit("changeCheckResult", data.reason);
+                  store.commit("nameChange", data.name);
+                  store.commit("sexRadioChange", data.sex);
+                  store.commit("gradeRadioChange", data.grade);
+                  store.commit("collegeChange", data.college);
+                  store.commit("majorChange", data.major);
+                  store.commit("phoneNumChange", data.phoneNum);
+                  store.commit("levelRadioChange", data.level);
+                  store.commit("introduceChange", data.introduce);
+                  store.commit("otherReasonChange", data.otherReason);
+                  resolve(openId);
+                }
+              });
+            } else {
+              resolve("获取用户openId失败");
             }
-          });
-        } else {
-          console.info("获取用户openId失败");
-        }
-      }
-    });
+          }
+        });
+      });
+    }
     
+    console.log(await getOpenId());
   },
   methods: {
     gotoJoin() {

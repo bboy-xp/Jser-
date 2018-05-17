@@ -77,6 +77,12 @@ export default {
       show: false,
     };
   },
+  // mounted() {
+  //   const that = this;
+  //   setInterval(() => {
+  //   console.log(this.close);
+  // },1000)
+  // },
   methods: {
     timeout() {
       return new Promise(resolve => {
@@ -104,13 +110,17 @@ export default {
       }
     },
     async gotoJoin() {
+
       this.line1 = "line2 one2";
       this.line2 = "line2 two2";
       this.line3 = "line2 three2";
       this.menu = "menu jumpUp";
       await this.timeout();
-      this.show = !this.show;
+      // this.show = !this.show;
+      this.show = false;
       this.header = "header";
+      //将close恢复初始值，防止动画混乱
+      this.close = true;
 
       wx.redirectTo({
         url: '../wenjuan1/main'
@@ -123,7 +133,8 @@ export default {
       this.line3 = "line2 three2";
       this.menu = "menu jumpUp";
       await this.timeout();
-      this.show = !this.show;
+      // this.show = !this.show;
+      this.show = false;
       this.header = "header";
       //将close恢复初始值，防止动画混乱
       this.close = true;
@@ -138,7 +149,8 @@ export default {
       this.line3 = "line2 three2";
       this.menu = "menu jumpUp";
       await this.timeout();
-      this.show = !this.show;
+      // this.show = !this.show;
+      this.show = false;
       this.header = "header";
       //将close恢复初始值，防止动画混乱
       this.close = true;
@@ -153,7 +165,8 @@ export default {
       this.line3 = "line2 three2";
       this.menu = "menu jumpUp";
       await this.timeout();
-      this.show = !this.show;
+      // this.show = !this.show;
+      this.show = false;
       this.header = "header";
       //将close恢复初始值，防止动画混乱
       this.close = true;

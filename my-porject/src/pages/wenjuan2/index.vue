@@ -46,12 +46,12 @@
                         <checkbox :value="reason.name" :checked="reason.checked"/> {{reason.value}}
                     </label>
                 </checkbox-group> 
-                <input :value="otherReason" @focus="addOtherReason" @change="otherReasonChange" class="aswerBox" type="text">
+                <input :value="otherReason" @change="otherReasonChange" class="aswerBox" type="text">
             </div>
             <div class="question">
                 介绍一下你自己，说说你的兴趣爱好以及在大学的理想和成就<span class="note">（140字以上）</span>
             </div>
-            <textarea :value="introduce1" class="introduce1" id="textarea" @focus="addpadding" @blur="removepadding" @change="introduceChange" maxlength="400" cursor-spacing="20"></textarea>
+            <textarea :value="introduce1" class="introduce1" id="textarea" @input="introduceChange" maxlength="400" cursor-spacing="20"></textarea>
             <div class="joinBtn" @click="submit">
                 提交
             </div>
@@ -127,18 +127,14 @@ export default {
         }
       }
     }
-
-    // setTimeout(() => {
-    //   store.commit('changeTestArg', 'string');
-    // }, 5000);
   },
   computed: {
     // testArg() {
     //   return store.state.testArg;
     // }
-    showInput() {
-      return store.state.showInput;
-    }
+    // showInput() {
+    //   return store.getters.showInput;
+    // }
   },
   // watch: {
   //   reasons: {
@@ -181,30 +177,34 @@ export default {
     },
     checkboxChange(e) {
       store.commit('changeCheckResult', e.target.value);
-      // console.log('触发了otherReason');
       // console.log(store.state.checkResult);
-      const arr = store.state.checkResult;
-      const findResult = arr.find((e) => {
-        if (e === 'reason4') {
-          return e;
-        }
-      });
+      // console.log(store.getters.showInput);
+      // // console.log('触发了otherReason');
+      // // console.log(store.state.checkResult);
+      // const arr =  e.target.value;
+      // const findResult = arr.find((e) => {
+      //   if (e === 'reason4') {
+      //     return e;
+      //   }
+      // });
 
-      const haveOtherReason = findResult ? true : false;
-      console.log(haveOtherReason);
-      // 只要commit changeShowInput就会出现错误
-      store.commit('changeShowInput', haveOtherReason);
-      // store.dispatch('changeSth', data)
+      // const haveOtherReason = findResult ? true : false;
+      // // console.log(haveOtherReason);
+      // // 只要commit changeShowInput就会出现错误
+      // // store.commit('changeShowInput', haveOtherReason);
+      // store.dispatch('changeShowInput', { checkResult: e.target.value, showInput: haveOtherReason});
+      // // store.dispatch('changeSth', data)
       // console.log(store.state.showInput);
     },
     introduceChange(e) {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       store.commit('introduceChange',e.target.value);
       console.log(store.state.introduce);
     },
     otherReasonChange(e) {
       // console.log(e.target.value);
       store.commit('otherReasonChange',e.target.value);
+      
     },
     submit() {
       store.dispatch('submit');
@@ -250,7 +250,20 @@ export default {
       //将close恢复初始值，防止动画混乱
       this.close = true;
     },
-    
+    // test1() {
+    //   console.log(111);
+    // },
+    // addOtherReason() {
+    //   console.log(store.getters.showInput);
+    //   if(store.getters.showInput == false){
+    //     wx.showModal({
+    //       title: '提示',
+    //       content: '错误',
+    //       showCancel: false,
+          
+    //     });
+    //   }
+    // }
   }
 };
 </script>

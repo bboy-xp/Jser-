@@ -19,8 +19,18 @@ const store = new Vuex.Store({
     level: "",
     introduce: "",
     otherReason: "",
-    showInput: false
+  },
+  getters: {
+    showInput(state) {
+      console.log('触发 showInput() getters');
+      const findResult = state.checkResult.find((e) => {
+        if (e === 'reason4') {
+          return e;
+        }
+      });
 
+      return findResult ? true : false;
+    }
   },
   mutations: {
     openIdChange: (state, payload) => {

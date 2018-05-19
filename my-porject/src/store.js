@@ -18,7 +18,8 @@ const store = new Vuex.Store({
     phoneNum: "",
     level: "",
     introduce: "",
-    otherReason: ""
+    otherReason: "",
+    showInput: false
 
   },
   mutations: {
@@ -63,6 +64,9 @@ const store = new Vuex.Store({
     otherReasonChange: (state, payload) => {
       state.otherReason = payload;
     },
+    changeShowInput(state, payload) {
+      state.showInput = payload;
+    }
   },
   actions: {
     async submit({ state }) {

@@ -46,7 +46,7 @@
                         <checkbox :value="reason.name" :checked="reason.checked"/> {{reason.value}}
                     </label>
                 </checkbox-group> 
-                <input :value="otherReason" @change="otherReasonChange" class="aswerBox" type="text">
+                <input :value="otherReason" @focus="addOtherReason" @change="otherReasonChange" class="aswerBox" type="text">
             </div>
             <div class="question">
                 介绍一下你自己，说说你的兴趣爱好以及在大学的理想和成就<span class="note">（140字以上）</span>
@@ -91,7 +91,7 @@ export default {
       show: false,
       otherReason: "",
       level: "",
-      reasonArr: []
+      reasonArr: [],
     };
   },
   mounted() {
@@ -127,7 +127,27 @@ export default {
         }
       }
     }
+
+    // setTimeout(() => {
+    //   store.commit('changeTestArg', 'string');
+    // }, 5000);
   },
+  computed: {
+    // testArg() {
+    //   return store.state.testArg;
+    // }
+    showInput() {
+      return store.state.showInput;
+    }
+  },
+  // watch: {
+  //   reasons: {
+  //     deep: true,
+  //     handler: function () {
+  //       console.log('dauihsiudhaihsduiashiud');
+  //     }
+  //   }
+  // },
   methods: {
     timeout() {
       return new Promise(resolve => {
@@ -156,11 +176,26 @@ export default {
     },
     
     levelRadioChange(e) {
+
       store.commit('levelRadioChange',e.target.value);
     },
     checkboxChange(e) {
       store.commit('changeCheckResult', e.target.value);
+      // console.log('触发了otherReason');
+      // console.log(store.state.checkResult);
+      const arr = store.state.checkResult;
+      const findResult = arr.find((e) => {
+        if (e === 'reason4') {
+          return e;
+        }
+      });
+
+      const haveOtherReason = findResult ? true : false;
+      console.log(haveOtherReason);
+      // 只要commit changeShowInput就会出现错误
+      store.commit('changeShowInput', haveOtherReason);
       // store.dispatch('changeSth', data)
+      // console.log(store.state.showInput);
     },
     introduceChange(e) {
       console.log(e.target.value);
@@ -214,7 +249,8 @@ export default {
       this.header = "header";
       //将close恢复初始值，防止动画混乱
       this.close = true;
-    }
+    },
+    
   }
 };
 </script>

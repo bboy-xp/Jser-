@@ -122,7 +122,7 @@ export default {
     //   store.state.introduce,
     //   store.state.otherReason,);
     // }, 1000); 
-    console.log(this);
+    // console.log(this);
     this.name = store.state.name;
     this.major = store.state.major;
     this.college = store.state.college;
@@ -130,14 +130,14 @@ export default {
     for (let i = 0; i < this.sexs.length; i++) {
       if (store.state.sex == this.sexs[i].name) {
         // console.log("ok");
-        console.log(this.sexs[i]);
+        // console.log(this.sexs[i]);
         this.sexs[i].checked = true;
       }
     }
     for (let i = 0; i < this.grades.length; i++) {
       if (store.state.grade == this.grades[i].name) {
         // console.log("ok");
-        console.log(this.grades[i]);
+        // console.log(this.grades[i]);
         this.grades[i].checked = true;
       }
     }

@@ -47,7 +47,7 @@ export default {
                 method: "GET",
                 header: { "content-type": "application/json" },
                 success: async function(openIdRes) {
-                  console.info("登录成功返回的openId：" + openIdRes.data.openid);
+                  // console.info("登录成功返回的openId：" + openIdRes.data.openid);
                   const openId = openIdRes.data.openid;
                   store.commit("openIdChange", openId);
                   // console.log(openId);
@@ -82,7 +82,9 @@ export default {
       });
     }
     
-    console.log(await getOpenId());
+    // console.log(await getOpenId());
+    await getOpenId();
+    // console.log(store.state);
   },
   methods: {
     gotoJoin() {

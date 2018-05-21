@@ -60,10 +60,10 @@
     </div>
 </template>
 <script>
-import store from '@/store';
+import store from "@/store";
 // import axios from 'axios';
-const Fly=require("flyio") ;
-const fly=new Fly;
+const Fly = require("flyio");
+const fly = new Fly();
 export default {
   data() {
     return {
@@ -91,7 +91,7 @@ export default {
       show: false,
       otherReason: "",
       level: "",
-      reasonArr: [],
+      reasonArr: []
     };
   },
   mounted() {
@@ -106,24 +106,29 @@ export default {
     //   store.state.level,
     //   store.state.introduce,
     //   store.state.otherReason,);
-    // }, 1000); 
+    // }, 1000);
     this.otherReason = store.state.otherReason;
     this.introduce1 = store.state.introduce;
     // console.log(this.levels);
-    for (let i = 0; i < this.levels.length; i++) {
-      // console.log(this.levels[i].name);  
-      if (store.state.level == this.levels[i].name) {
-        // console.log("ok");
-        console.log(this.levels[i]);
-        this.levels[i].checked = true;
+    if (this.levels) {
+      for (let i = 0; i < this.levels.length; i++) {
+        // console.log(this.levels[i].name);
+        if (store.state.level == this.levels[i].name) {
+          // console.log("ok");
+          // console.log(this.levels[i]);
+          this.levels[i].checked = true;
+        }
       }
     }
-    console.log(store.state.checkResult);
-    for (let j = 0; j < store.state.checkResult.length; j++) {
-      for (let i = 0; i < this.reasons.length; i++) {
-        if (store.state.checkResult[j] == this.reasons[i].name) {
-          this.reasons[i].checked = true;
-          // console.log(111);
+
+    // console.log(store.state.checkResult);
+    if (store.state.checkResult) {
+      for (let j = 0; j < store.state.checkResult.length; j++) {
+        for (let i = 0; i < this.reasons.length; i++) {
+          if (store.state.checkResult[j] == this.reasons[i].name) {
+            this.reasons[i].checked = true;
+            // console.log(111);
+          }
         }
       }
     }
@@ -170,13 +175,12 @@ export default {
         this.header = "header";
       }
     },
-    
-    levelRadioChange(e) {
 
-      store.commit('levelRadioChange',e.target.value);
+    levelRadioChange(e) {
+      store.commit("levelRadioChange", e.target.value);
     },
     checkboxChange(e) {
-      store.commit('changeCheckResult', e.target.value);
+      store.commit("changeCheckResult", e.target.value);
       // console.log(store.state.checkResult);
       // console.log(store.getters.showInput);
       // // console.log('触发了otherReason');
@@ -198,16 +202,15 @@ export default {
     },
     introduceChange(e) {
       // console.log(e.target.value);
-      store.commit('introduceChange',e.target.value);
-      console.log(store.state.introduce);
+      store.commit("introduceChange", e.target.value);
+      // console.log(store.state.introduce);
     },
     otherReasonChange(e) {
       // console.log(e.target.value);
-      store.commit('otherReasonChange',e.target.value);
-      
+      store.commit("otherReasonChange", e.target.value);
     },
     submit() {
-      store.dispatch('submit');
+      store.dispatch("submit");
     },
     async gotoHome() {
       this.line1 = "line2 one2";
@@ -221,7 +224,7 @@ export default {
       this.close = true;
 
       wx.redirectTo({
-        url: '../home/main'
+        url: "../home/main"
       });
     },
     async gotoWenan() {
@@ -236,7 +239,7 @@ export default {
       this.close = true;
 
       wx.redirectTo({
-        url: '../wenan/main'
+        url: "../wenan/main"
       });
     },
     async noGoto() {
@@ -249,7 +252,7 @@ export default {
       this.header = "header";
       //将close恢复初始值，防止动画混乱
       this.close = true;
-    },
+    }
     // test1() {
     //   console.log(111);
     // },
@@ -260,7 +263,7 @@ export default {
     //       title: '提示',
     //       content: '错误',
     //       showCancel: false,
-          
+
     //     });
     //   }
     // }
@@ -268,7 +271,6 @@ export default {
 };
 </script>
 <style scoped>
-
 .page {
   display: flex;
   flex-direction: column;
@@ -400,7 +402,6 @@ export default {
   border-radius: 28rpx;
   padding: 10rpx;
   font-size: 30rpx;
-  
 }
 
 @keyframes one {
@@ -614,6 +615,5 @@ export default {
 .options {
   z-index: 20;
 }
-
 </style>
 

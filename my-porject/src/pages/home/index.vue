@@ -53,24 +53,26 @@ export default {
                   // console.log(openId);
                   // console.log(store.state.openId);
                   // const result = await fly.post('http://sxp.topsxp.top:7001/getUsermsg',{openId: openId});
-                  const result = await fly.post(
-                    "http://127.0.0.1:7001/getUsermsg",
-                    { openId: openId }
-                  );
+                  
+                  // const result = await fly.post(
+                  //   "http://127.0.0.1:7001/getUsermsg",
+                  //   { openId: openId }
+                  // );
   
                   // console.log(result.data);
                   const data = result.data;
                   // console.log(data.name);
-                  store.commit("changeCheckResult", data.reason);
-                  store.commit("nameChange", data.name);
-                  store.commit("sexRadioChange", data.sex);
-                  store.commit("gradeRadioChange", data.grade);
-                  store.commit("collegeChange", data.college);
-                  store.commit("majorChange", data.major);
-                  store.commit("phoneNumChange", data.phoneNum);
-                  store.commit("levelRadioChange", data.level);
-                  store.commit("introduceChange", data.introduce);
-                  store.commit("otherReasonChange", data.otherReason);
+
+                  // store.commit("changeCheckResult", data.reason);
+                  // store.commit("nameChange", data.name);
+                  // store.commit("sexRadioChange", data.sex);
+                  // store.commit("gradeRadioChange", data.grade);
+                  // store.commit("collegeChange", data.college);
+                  // store.commit("majorChange", data.major);
+                  // store.commit("phoneNumChange", data.phoneNum);
+                  // store.commit("levelRadioChange", data.level);
+                  // store.commit("introduceChange", data.introduce);
+                  // store.commit("otherReasonChange", data.otherReason);
                   resolve(openId);
                 }
               });

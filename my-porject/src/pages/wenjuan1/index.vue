@@ -80,14 +80,14 @@ import store from "@/store";
 export default {
   data() {
     return {
-      sexs: [{ name: "boy", value: "男生" }, { name: "girl", value: "女生" }],
+      sexs: [{ name: "男生", value: "男生" }, { name: "女生", value: "女生" }],
       grades: [
-        { name: "gradeOne", value: "大一" },
-        { name: "gradeTwo", value: "大二" },
-        { name: "gradeThree", value: "大三" },
-        { name: "gradeFour", value: "大四" },
-        { name: "gradeFive", value: "研究生" },
-        { name: "graduate", value: "已毕业" }
+        { name: "大一", value: "大一" },
+        { name: "大二", value: "大二" },
+        { name: "大三", value: "大三" },
+        { name: "大四", value: "大四" },
+        { name: "研究生", value: "研究生" },
+        { name: "已毕业", value: "已毕业" }
       ],
       line1: "line",
       line2: "line",

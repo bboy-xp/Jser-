@@ -21,16 +21,16 @@ const store = new Vuex.Store({
     otherReason: "",
   },
   getters: {
-    showInput(state) {
-      console.log('触发 showInput() getters');
-      const findResult = state.checkResult.find((e) => {
-        if (e === 'reason4') {
-          return e;
-        }
-      });
+    // showInput(state) {
+    //   console.log('触发 showInput() getters');
+    //   const findResult = state.checkResult.find((e) => {
+    //     if (e === 'reason4') {
+    //       return e;
+    //     }
+    //   });
 
-      return findResult ? true : false;
-    }
+    //   return findResult ? true : false;
+    // }
   },
   mutations: {
     openIdChange: (state, payload) => {
@@ -97,7 +97,7 @@ const store = new Vuex.Store({
       }
       console.log(data);
       // const result = await fly.post('http://sxp.topsxp.top:7001/postUsermsg', data);
-      const result = await fly.post('http://127.0.0.1:7001/postUsermsg', data);
+      const result = await fly.post('http://hook.feit.me/postUsermsg', data);
       if(result.data == 'ok'){
         wx.showModal({
           title: '提示',

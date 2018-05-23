@@ -68,17 +68,17 @@ export default {
   data() {
     return {
       levels: [
-        { name: "level0", value: "纯小白基本只会开机" },
-        { name: "level1", value: "会基本的文档，表格，PPT的编辑操作" },
-        { name: "level2", value: "熟练使用Office、Adobe等软件" },
-        { name: "level3", value: "上天入地，无所不能" }
+        { name: "纯小白基本只会开机", value: "纯小白基本只会开机" },
+        { name: "会基本的文档，表格，PPT的编辑操作", value: "会基本的文档，表格，PPT的编辑操作" },
+        { name: "熟练使用Office、Adobe等软件", value: "熟练使用Office、Adobe等软件" },
+        { name: "上天入地，无所不能", value: "上天入地，无所不能" }
       ],
       reasons: [
-        { name: "reason0", value: "想提升自己的职业技能" },
-        { name: "reason1", value: "想从事互联网相关工作" },
-        { name: "reason2", value: "对互联网、电子产品有浓厚兴趣" },
-        { name: "reason3", value: "想认识更多兴趣相投的校友" },
-        { name: "reason4", value: "我还有其他的原因*" }
+        { name: "想提升自己的职业技能", value: "想提升自己的职业技能" },
+        { name: "想从事互联网相关工作", value: "想从事互联网相关工作" },
+        { name: "对互联网、电子产品有浓厚兴趣", value: "对互联网、电子产品有浓厚兴趣" },
+        { name: "想认识更多兴趣相投的校友", value: "想认识更多兴趣相投的校友" },
+        { name: "我还有其他的原因", value: "我还有其他的原因*" }
       ],
       line1: "line",
       line2: "line",

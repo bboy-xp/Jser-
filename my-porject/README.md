@@ -20,8 +20,8 @@
 
 ```
 # 效果：
-![one](https://github.com/bboy-xp/Jser-/static/1.gif)
-![two](https://github.com/bboy-xp/Jser-/static/2.gif)
+![one](https://github.com/bboy-xp/Jser-/blob/master/static/1.gif?raw=true)
+![two](https://github.com/bboy-xp/Jser-/blob/master/static/2.gif?raw=true)
 
 > &#x26A0; Tips：欢迎在我的 [GitHub Issue](https://github.com/bboy-xp/Jser-/issues) 页沟通交流并提出您的宝贵建议，您的建议是我成长的动力来源 &#x1F603;
 
